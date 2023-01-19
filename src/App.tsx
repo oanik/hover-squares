@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { GameModeData } from './interfaces';
+import { getGameModeData } from './api/index';
+import { STATUS } from './constants/enums';
+import StateWrapper from './layout/stateWrapper';
+
+const App = () => {
+  const [gameModes, setGameModes] = useState<GameModeData[]>([]);
+  const [status, setStatus] = useState<STATUS>(STATUS.LOADING);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await getGameModeData();
+
+        setGameModes(response);
+        setStatus(STATUS.SUCCESS);
+      } catch (e) {
+        setStatus(STATUS.ERROR);
+      }
+    };
+
+    getData();
+  }, []);
+
+  return <StateWrapper status={status} gameModes={gameModes} />
 }
 
 export default App;

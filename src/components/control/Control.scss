@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+
+.wrapper {
+  width: $containerDimentions;
+  margin-bottom: $outerSpacing;
+}
+
+.startButton {
+  margin-left: $outerSpacing !important;
+}

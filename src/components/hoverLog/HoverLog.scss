@@ -1,0 +1,52 @@
+@import '../../styles/variables';
+
+$elemWidth: 35%;
+$padding: 12px;
+$maskSize: 17px;
+$fontWeight600: 600;
+
+.logContainer {
+  padding-left: $padding;
+}
+
+.header {
+  height: 38px;
+  width: $elemWidth;
+  margin-bottom: $outerSpacing;
+  font-weight: $fontWeight600;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.rowContainer {
+  max-height: $containerDimentions;
+  width: $elemWidth;
+  overflow: hidden;
+  overflow-y: scroll;
+  mask-image: linear-gradient(to top, transparent, $blackColor),
+    linear-gradient(to left, transparent $maskSize, $blackColor $maskSize);
+  mask-size: 100% 20000px;
+  mask-position: left bottom;
+  -webkit-mask-image: linear-gradient(to top, transparent, $blackColor),
+    linear-gradient(to left, transparent $maskSize, $blackColor $maskSize);
+  -webkit-mask-size: 100% 20000px;
+  -webkit-mask-position: left bottom;
+  transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+}
+
+.rowContainer:hover {
+  mask-position: left top;
+  -webkit-mask-position: left top;
+}
+
+.logRow {
+  padding: $padding;
+  margin-right: $padding;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  border: 1px solid rgb(251, 238, 213);
+  font-size: 16px;
+  font-weight: $fontWeight600;
+  color: rgb(105, 41, 41);
+  background-color: rgb(251, 248, 227);
+}
